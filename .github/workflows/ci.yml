@@ -30,36 +30,36 @@
             run: npm run test # Запускаем ваши тесты Vitest
             # Если тесты не проходят, этот шаг завершится ошибкой, и весь workflow будет считаться проваленным.
 
-        deploy:
-          name: Deploy to GitHub Pages
-          needs: test
-          if: success() && github.ref == 'refs/heads/master'
-          runs-on: ubuntu-latest
-          permissions:
-            contents: write
-            pages: write
-            id-token: write
+      deploy:
+        name: Deploy to GitHub Pages
+        needs: test
+        if: success() && github.ref == 'refs/heads/master'
+        runs-on: ubuntu-latest
+        permissions:
+          contents: write
+          pages: write
+          id-token: write
 
-          steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
 
-            - name: Set up Node.js
-              uses: actions/setup-node@v4
-              with:
-                node-version: '20'
-                cache: 'npm'
+          - name: Set up Node.js
+            uses: actions/setup-node@v4
+            with:
+              node-version: '20'
+              cache: 'npm'
 
-            - name: Install dependencies
-              run: npm ci
+          - name: Install dependencies
+            run: npm ci
 
-            - name: Build project
-              run: npm run build
+          - name: Build project
+            run: npm run build
 
-            - name: Deploy to GitHub Pages
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                publish_dir: ./dist
-                user_name: 'github-actions[bot]'
-                user_email: 'github-actions[bot]@users.noreply.github.com'
+          - name: Deploy to GitHub Pages
+            uses: peaceiris/actions-gh-pages@v3
+            with:
+              github_token: ${{ secrets.GITHUB_TOKEN }}
+              publish_dir: ./dist
+              user_name: 'github-actions[bot]'
+              user_email: 'github-actions[bot]@users.noreply.github.com'
