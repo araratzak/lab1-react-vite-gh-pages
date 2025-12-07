@@ -33,7 +33,7 @@
       deploy:
         name: Deploy to GitHub Pages
         needs: test # Этот job зависит от успешного выполнения job 'test'. Деплой не начнется, если тесты провалились.
-        if: success() && github.ref == 'refs/heads/main' # Деплоить только если тесты прошли и это ветка main
+        if: success() && github.ref == 'refs/heads/master' # Деплоить только если тесты прошли и это ветка main
         runs-on: ubuntu-latest
 
         steps:
