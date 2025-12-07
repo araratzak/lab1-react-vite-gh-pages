@@ -3,10 +3,10 @@
     on:
       push:
         branches:
-          - main # Запускать workflow при пуше в ветку main
+          - master # Запускать workflow при пуше в ветку main
       pull_request:
         branches:
-          - main # Запускать workflow при создании/обновлении pull request в ветку main
+          - master # Запускать workflow при создании/обновлении pull request в ветку main
 
     jobs:
       test:
